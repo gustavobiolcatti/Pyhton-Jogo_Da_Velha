@@ -48,7 +48,7 @@ class Funcoes(object):
                tab[0][2][0] == "X" and tab[1][2][0] == "X" and tab[2][2][0] == "X" or
                tab[0][0][0] == "X" and tab[1][1][0] == "X" and tab[2][2][0] == "X" or
                tab[2][0][0] == "X" and tab[1][1][0] == "X" and tab[0][2][0] == "X"):
-            print("\nParabéns {}!".format(nome))
+            print("\nParabéns {}! Você ganhou!".format(nome))
             quit()
 
         if (tab[0][0][0] == "O" and tab[0][1][0] == "O" and tab[0][2][0] == "O" or
@@ -59,5 +59,5 @@ class Funcoes(object):
                tab[0][2][0] == "O" and tab[1][2][0] == "O" and tab[2][2][0] == "O" or
                tab[0][0][0] == "O" and tab[1][1][0] == "O" and tab[2][2][0] == "O" or
                tab[2][0][0] == "O" and tab[1][1][0] == "O" and tab[0][2][0] == "O"):
-            print("\nParabéns {}!".format(nome))
+            print("\nParabéns {}! Você ganhou!".format(nome))
             quit()
