@@ -35,7 +35,9 @@ while jogo and jogadas <= 9:
             tipo = "X"
 
             Funcoes.InserirPosicao(t=tipo, tab=tab)
-            Funcoes.VerifGanhou(tab=tab, nome=j1_nome)
+            if jogadas>= 5:
+                Funcoes.VerifGanhou(tab=tab, nome=j1_nome)
+                  
             verif_1 = False
 
         jogadas += 1
@@ -52,7 +54,8 @@ while jogo and jogadas <= 9:
             tipo = "O"
 
             Funcoes.InserirPosicao(t=tipo, tab=tab)
-            Funcoes.VerifGanhou(tab=tab, nome=j1_nome)
+            if jogadas >= 5:
+                Funcoes.VerifGanhou(tab=tab, nome=j1_nome)
 
             verif_2 = False
         jogadas += 1
