@@ -1,63 +1,31 @@
-from Funcoes_Velha  import Funcoes
+from Funcoes_Velha import Funcoes as velha
 
-# TUTORIAL
-print("=" * 15)
-print("{:^15}".format("POSIÇÕES"))
-print("=" * 15)
+players = (velha(1), velha(2))
 
-print("""\n    0   1   2
-0     |   |   
-   -----------
-1     |   |   
-   -----------
-2     |   |   \n""")
+print("\n\n************** AVISO *************")
+print("As linhas e colunas vão de 1 até 3\n")
 
-print("=" * 15)
-# FIM TUTORIAL
+players[0].exibirTabela()
 
+print("\n**********************************\n")
 
-j1_nome = input("\nNome 1º jogador: ").strip().title()
-j2_nome = input("Nome 2º jogador: ").strip().title()
+for i in range(1, 5):
+    for player in players:
+        while True:
+            print("\nSua vez ", player.exibirNome())
+            linha = int(input("Insira a linha: ")) - 1
+            coluna = int(input("Insira a coluna: ")) - 1
 
-tab = [[["-"], ["-"], ["-"]], [["-"], ["-"], ["-"]], [["-"], ["-"], ["-"]]]
+            verif_jogada = player.inserirPosicao(linha, coluna)
 
-# JOGADAS
-jogo = True
-jogadas = 1
-while jogo and jogadas <= 9:
-    rodada = True
-    while rodada:
+            if not verif_jogada:
+                print("")
+                player.exibirTabela()
+                break
 
-        # VEZ DO JOGADOR 1
-        verif_1 = True
-        while verif_1:
-            print("\nSua vez {}".format(j1_nome))
-            tipo = "X"
-
-            Funcoes.InserirPosicao(t=tipo, tab=tab)
-            if jogadas>= 5:
-                Funcoes.VerifGanhou(tab=tab, nome=j1_nome)
-                  
-            verif_1 = False
-
-        jogadas += 1
-
-        # VERIFICAÇÃO DE FIM DE JOGO
-        if jogadas >= 9:
-            print("VELHA! NINGUÉM GANHOU.")
+        if player.verifFim():
+            print("\n\nParabéns {}, você ganhou!!".format(player.exibirNome()))
             break
 
-        # VEZ DO JOGADOR 2
-        verif_2 = True
-        while verif_2:
-            print("\nSua vez {}".format(j2_nome))
-            tipo = "O"
-
-            Funcoes.InserirPosicao(t=tipo, tab=tab)
-            if jogadas >= 5:
-                Funcoes.VerifGanhou(tab=tab, nome=j1_nome)
-
-            verif_2 = False
-        jogadas += 1
-
-        rodada = False
+    if player.verifFim():
+        break
