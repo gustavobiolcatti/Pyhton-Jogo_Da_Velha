@@ -1,63 +1,49 @@
-class Funcoes(object):
-    def ___init__(self):
-        pass     
+tab = [["-", "-", "-"],
+       ["-", "-", "-"],
+       ["-", "-", "-"]]
 
-    def InserirPosicao(tab, t):
-        # Verifica se a jogada pode ser validada
-        
-        valid_pos = True
-        while valid_pos:
+class Funcoes:
+    def __init__(self, cod):
+        self.cod = cod
+        self.nome = input("Digite seu nome: ").strip()
 
-            verif_input = True
-            while verif_input:
-                l = int(input("Posição na linha: "))
-                c = int(input("Posição na coluna: "))
+        if self.cod == 1:
+            self.simbolo = 'x'
+        else:
+            self.simbolo = 'o'
 
-                # VERIFICA SE A POSIÇÃO ESTÁ DENTRO DO INDICE DA MATRIZ (3X3)
-                if 0 <= l <= 3 and 0 <= c <= 3:
+    def exibirTabela(self):
+        for linha in range(0, len(tab)):
+            for coluna in range(0, len(tab[linha])):
+                print(tab[linha][coluna], end="")
 
-                    # VERIFICA SE A POSIÇÃO JÁ ESTÁ PREENCHIDA
-                    if tab[l][c] != "X" and tab[l][c] != "O":
-                        tab[l][c] = t
+                if coluna == 0 or coluna == 1:
+                    print(" | ", end="")
 
-                        valid_pos = False
-                        verif_input = False
-                        continue
-                    else:
-                        print("\nPosição já preenchida! Digite outra posição.\n")
-                else:
-                    print("\nPosição fora de index! Digite novamente.\n")
-            
+            if linha == 0 or linha == 1:
+                print("\n----------")
 
-            print("\n")        
-            for i in range(1, 4):
-                print(" {} | {} | {} ".format(tab[i - 1][0][0],tab[i - 1][1][0],tab[i - 1][2][0]))
-                if i < 3:
-                    print("-" * 11)
+    def exibirNome(self):
+        return self.nome
 
-            print("-"*40)
+    def verifFim(self):
+        for linha in range(0, 3):
+            if tab[linha][0] == self.simbolo and tab[linha][1] == self.simbolo and tab[linha][2] == self.simbolo:
+                return True
 
+        for coluna in range(0, 3):
+            if tab[0][coluna] == self.simbolo and tab[1][coluna] == self.simbolo and tab[2][coluna] == self.simbolo:
+                return True
 
-    def VerifGanhou(tab, nome):
-        # Verifica se o jogador venceu após sua jogada
-        if (tab[0][0][0] == "X" and tab[0][1][0] == "X" and tab[0][2][0] == "X" or
-               tab[1][0][0] == "X" and tab[1][1][0] == "X" and tab[1][2][0] == "X" or
-               tab[2][0][0] == "X" and tab[2][1][0] == "X" and tab[2][2][0] == "X" or
-               tab[0][0][0] == "X" and tab[1][0][0] == "X" and tab[2][0][0] == "X" or
-               tab[0][1][0] == "X" and tab[1][1][0] == "X" and tab[2][1][0] == "X" or
-               tab[0][2][0] == "X" and tab[1][2][0] == "X" and tab[2][2][0] == "X" or
-               tab[0][0][0] == "X" and tab[1][1][0] == "X" and tab[2][2][0] == "X" or
-               tab[2][0][0] == "X" and tab[1][1][0] == "X" and tab[0][2][0] == "X"):
-            print("\nParabéns {}! Você ganhou!".format(nome))
-            quit()
+        if tab[0][0] == self.simbolo and tab[1][1] == self.simbolo and tab[2][2] == self.simbolo or\
+                tab[0][2] == self.simbolo and tab[1][1] == self.simbolo and tab[2][0] == self.simbolo:
+            return True
 
-        if (tab[0][0][0] == "O" and tab[0][1][0] == "O" and tab[0][2][0] == "O" or
-               tab[1][0][0] == "O" and tab[1][1][0] == "O" and tab[1][2][0] == "O" or
-               tab[2][0][0] == "O" and tab[2][1][0] == "O" and tab[2][2][0] == "O" or
-               tab[0][0][0] == "O" and tab[1][0][0] == "O" and tab[2][0][0] == "O" or
-               tab[0][1][0] == "O" and tab[1][1][0] == "O" and tab[2][1][0] == "O" or
-               tab[0][2][0] == "O" and tab[1][2][0] == "O" and tab[2][2][0] == "O" or
-               tab[0][0][0] == "O" and tab[1][1][0] == "O" and tab[2][2][0] == "O" or
-               tab[2][0][0] == "O" and tab[1][1][0] == "O" and tab[0][2][0] == "O"):
-            print("\nParabéns {}! Você ganhou!".format(nome))
-            quit()
+    def inserirPosicao(self, linha, coluna):
+        if linha < 0 or linha > 2 or coluna < 0 or coluna > 2 or tab[linha][coluna] != "-":
+            print("Posição inválida\n")
+            return True
+
+        else:
+            tab[linha][coluna] = self.simbolo
+            return False
